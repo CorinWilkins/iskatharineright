@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>😜</text></svg>" />
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Katharine Right?</title>
+</head>
+<body>
+    <div class="content animate__bounceIn animate__animated">
+        <span>Is Katharine Right?</span>
+        <span id="affirmation" class="affirmative animate__tada animate__animated" style="color: transparent;">YES!</span>
+    </div>
+</body>
+</html>
+<script>
+    const affirmations = ['absolutely', 'affirmative', 'agreed', 'amen', 'assuredly', 'aye', 'certainly', 'definitely', 'emphatically', 'exactly', 'indeed', 'indubitably', 'it is so', 'mais oui', 'most assuredly', 'naturally', 'of course', 'of-course', 'oui', 'positively', 'precisely', 'right on', 'sure', 'surely', 'totally', 'true', 'uh-huh', 'undoubtedly', 'unquestionably', 'without-fail', 'without a doubt', 'yep', 'you-bet'];
+
+document.querySelector('#affirmation').textContent = affirmations[Math.round((affirmations.length - 1) * Math.random())] + "!"
+
+const colors = ["aquamarine", "azure", "bisque", "blanchedalmond", "blueviolet", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "crimson", "cyan", "dodgerblue", "firebrick", "forestgreen", "gainsboro", "ghostwhite", "gold", "goldenrod", "greenyellow", "hotpink", "indianred", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightsteelblue", "lightyellow", "limegreen", "magenta", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "oldlace", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "rebeccapurple", "royalblue", "salmon", "seagreen", "seashell", "sienna", "skyblue", "slateblue", "snow", "springgreen", "steelblue", "tan", "thistle", "tomato", "turquoise", "violet", "wheat", "whitesmoke", "yellowgreen"]
+
+const color = colors[Math.round((colors.length - 1) * Math.random())]
+document.querySelector('body').style.backgroundColor = color;
+
+setTimeout(()=>document.querySelector('#affirmation').style.color = color, 1000)
+
+					
+</script>
