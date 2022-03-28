@@ -9,23 +9,67 @@
     <title>Is Katharine Right?</title>
 </head>
 <body>
-    <div class="content animate__bounceIn animate__animated">
+    <div id="content" class="content animate__bounceIn animate__animated">
         <span>Is Katharine Right?</span>
         <span id="affirmation" class="affirmative animate__tada animate__animated" style="color: transparent;">YES!</span>
     </div>
+    <button id="more_button">Try again</button>
+
+    <span class="twitter">built by <a href="https://twitter.com/CorinWilkins">@CorinWilkins</a></span>
 </body>
 </html>
 <script>
-    const affirmations = ['absolutely', 'affirmative', 'agreed', 'amen', 'assuredly', 'aye', 'certainly', 'definitely', 'emphatically', 'exactly', 'indeed', 'indubitably', 'it is so', 'mais oui', 'most assuredly', 'naturally', 'of course', 'of-course', 'oui', 'positively', 'precisely', 'right on', 'sure', 'surely', 'totally', 'true', 'uh-huh', 'undoubtedly', 'unquestionably', 'without-fail', 'without a doubt', 'yep', 'you-bet'];
+    const baseAffirmations = ['absolutely', 'affirmative', 'agreed', 'amen', 'assuredly', 'aye', 'certainly', 'definitely', 'emphatically', 'exactly', 'indeed', 'indubitably', 'it is so', 'mais oui', 'most assuredly', 'naturally', 'of course', 'oui', 'positively', 'precisely', 'right on', 'sure', 'surely', 'totally', 'true', 'uh-huh', 'undoubtedly', 'unquestionably', 'without-fail', 'no doubt', 'yep', 'you-bet'];
+    const baseColors = ["aquamarine", "bisque", "blueviolet", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "crimson", "cyan", "dodgerblue", "firebrick", "forestgreen", "gainsboro", "gold", "goldenrod", "greenyellow", "hotpink", "indianred", "lawngreen", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightsteelblue", "limegreen", "magenta", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "mistyrose", "moccasin", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "rebeccapurple", "royalblue", "salmon", "seagreen", "sienna", "skyblue", "slateblue", "springgreen", "steelblue", "tan", "thistle", "tomato", "turquoise", "violet", "wheat", "yellowgreen"]
+    
+    
+    let tadaTimeout
+    let zoomInTimeout
 
-document.querySelector('#affirmation').textContent = affirmations[Math.round((affirmations.length - 1) * Math.random())] + "!"
+    colors = []
+    affirmations = []
 
-const colors = ["aquamarine", "azure", "bisque", "blanchedalmond", "blueviolet", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "crimson", "cyan", "dodgerblue", "firebrick", "forestgreen", "gainsboro", "ghostwhite", "gold", "goldenrod", "greenyellow", "hotpink", "indianred", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightsteelblue", "lightyellow", "limegreen", "magenta", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "oldlace", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "rebeccapurple", "royalblue", "salmon", "seagreen", "seashell", "sienna", "skyblue", "slateblue", "snow", "springgreen", "steelblue", "tan", "thistle", "tomato", "turquoise", "violet", "wheat", "whitesmoke", "yellowgreen"]
+    function resetColors(){
+        colors = [...baseColors]
+    }
 
-const color = colors[Math.round((colors.length - 1) * Math.random())]
-document.querySelector('body').style.backgroundColor = color;
+    function resetAffirmations(){
+        affirmations = [...baseAffirmations]
+    }
+    
+    function render(){
+        if(!colors.length)resetColors();
+        if(!affirmations.length)resetAffirmations();
 
-setTimeout(()=>document.querySelector('#affirmation').style.color = color, 1000)
+        clearTimeout(zoomInTimeout);
+        clearTimeout(tadaTimeout);
 
-					
+        const color = colors.splice(Math.round((colors.length - 1) * Math.random()), 1)
+        const affirmationText = affirmations.splice(Math.round((affirmations.length - 1) * Math.random()), 1) + "!"
+        const affirmation = document.querySelector('#affirmation');
+        const body = document.querySelector('body');
+        const content = document.querySelector('#content');
+
+        content.style.display = "none"
+        affirmation.style.display = "none"
+
+        zoomInTimeout = setTimeout(()=>{
+            content.style.display = "flex"
+            affirmation.style.display = "block"
+        }, 0);
+
+        affirmation.style.visibility = "hidden"
+        affirmation.style.color = 'transparent';
+        body.style.backgroundColor = color;
+
+        affirmation.textContent = affirmationText;
+
+        tadaTimeout = setTimeout(()=>{
+            affirmation.style.visibility = "visible"
+            affirmation.style.color = color
+        }, 1000)
+    }
+
+    render();
+    document.querySelector('#more_button').addEventListener('click', render)
 </script>

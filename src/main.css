@@ -3,9 +3,10 @@ body {
     font-size: x-large;
     font-weight: 500;
     text-align: center;
-    display: flex;
     height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: whitesmoke;
@@ -37,6 +38,35 @@ body {
 
     -webkit-animation-delay: 0.5s;
     animation-delay: 0.5s;
+}
+
+button {
+    background: transparent;
+    border-radius: 5px;
+    border: black solid 2px;
+    color: black;
+    font-size: medium;
+    padding: 0.3em;
+    margin: 15px;
+}
+
+
+button:hover {
+    background: white;
+    border: black solid 2px;
+    color: black;
+}
+
+.twitter{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: medium;
+    color: black
+}
+
+.twitter > a {
+    color: black
 }
 
 /*!
@@ -73,13 +103,13 @@ body {
     }
 
     30%,50%,70%,90% {
-        -webkit-transform: scale3d(1.25,1.25,1.25) rotate(3deg);
-        transform: scale3d(1.25,1.25,1.25) rotate(3deg)
+        -webkit-transform: scale3d(1.2,1.2,1.2) rotate(3deg);
+        transform: scale3d(1.2,1.2,1.2) rotate(3deg)
     }
 
     40%,60%,80% {
-        -webkit-transform: scale3d(1.25,1.25,1.25) rotate(-3deg);
-        transform: scale3d(1.25,1.25,1.25) rotate(-3deg)
+        -webkit-transform: scale3d(1.2,1.2,1.2) rotate(-3deg);
+        transform: scale3d(1.2,1.2,1.2) rotate(-3deg)
     }
 
     to {
