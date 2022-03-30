@@ -36,19 +36,32 @@
     function resetAffirmations(){
         affirmations = [...baseAffirmations]
     }
+
+    function getRandomColor(){
+        if(!colors.length)resetColors();
+        return colors.splice(Math.round((colors.length - 1) * Math.random()), 1)
+    }
+
+    function getRandomText(){
+        if(!affirmations.length)resetAffirmations();
+        return affirmations.splice(Math.round((affirmations.length - 1) * Math.random()), 1) + "!"
+    }
     
     function render(){
-        if(!colors.length)resetColors();
-        if(!affirmations.length)resetAffirmations();
-
-        clearTimeout(zoomInTimeout);
-        clearTimeout(tadaTimeout);
-
-        const color = colors.splice(Math.round((colors.length - 1) * Math.random()), 1)
-        const affirmationText = affirmations.splice(Math.round((affirmations.length - 1) * Math.random()), 1) + "!"
         const affirmation = document.querySelector('#affirmation');
         const body = document.querySelector('body');
         const content = document.querySelector('#content');
+        
+        const color = getRandomColor();
+        const affirmationText = getRandomText()
+        body.style.backgroundColor = color;
+
+        setAffirmation(affirmationText, color)  
+    }
+
+    function setAffirmation(affirmationText, color){
+        clearTimeout(zoomInTimeout);
+        clearTimeout(tadaTimeout);
 
         content.style.display = "none"
         affirmation.style.display = "none"
@@ -60,8 +73,6 @@
 
         affirmation.style.visibility = "hidden"
         affirmation.style.color = 'transparent';
-        body.style.backgroundColor = color;
-
         affirmation.textContent = affirmationText;
 
         tadaTimeout = setTimeout(()=>{
